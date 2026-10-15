@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALORANT Background</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+html,body{
+  width:100%;height:100%;overflow:hidden;
+  background:#071727
+}
+
+.lobby-background{
+  position:fixed;inset:0;isolation:isolate;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 50% 28%,
+      rgba(14,88,125,.68),rgba(9,55,82,.35) 38%,transparent 72%),
+    linear-gradient(180deg,#09283d,#0b2a42 45%,#071b2d 78%,#061522)
+}
+
+.lobby-background::before{
+  content:"";position:absolute;inset:-20%;z-index:-1;
+  background:
+    radial-gradient(ellipse at 50% 38%,rgba(24,105,145,.32),transparent 56%),
+    radial-gradient(ellipse at 50% 100%,rgba(40,100,137,.25),transparent 45%);
+  animation:glow 18s ease-in-out infinite alternate
+}
+
+.geometry{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    repeating-linear-gradient(135deg,transparent 95px,
+      rgba(120,184,217,.018) 96px,transparent 98px),
+    repeating-linear-gradient(45deg,transparent 145px,
+      rgba(120,184,217,.015) 146px,transparent 148px)
+}
+
+.mist{
+  position:absolute;left:-15%;right:-15%;bottom:-18%;
+  height:48%;z-index:-1;filter:blur(22px);
+  background:radial-gradient(ellipse at 50% 15%,
+    rgba(50,111,149,.26),rgba(23,67,97,.12) 38%,transparent 72%);
+  animation:mist 16s ease-in-out infinite alternate
+}
+
+.vignette{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(3,12,23,.55),transparent 27%,
+      transparent 73%,rgba(3,12,23,.55)),
+    radial-gradient(ellipse at center,transparent 30%,
+      rgba(2,10,20,.22) 68%,rgba(1,7,15,.72) 115%)
+}
+
+@keyframes glow{
+  to{transform:scale(1.06) translateY(1%);opacity:1}
+}
+
+@keyframes mist{
+  to{transform:translateX(2%);opacity:1}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important}
+}
+</style>
+</head>
+
+<body>
+<main class="lobby-background">
+  <div class="geometry"></div>
+  <div class="mist"></div>
+  <div class="vignette"></div>
+</main>
+</body>
+</html>
