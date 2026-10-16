@@ -1,0 +1,250 @@
+
+/* ===== Bottom Action Bar ===== */
+
+.lobby-actions {
+  position: fixed;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  width: min(750px, 96vw);
+
+  display: grid;
+  grid-template-columns: 1fr 1.18fr 1fr;
+  align-items: center;
+  gap: 22px;
+
+  z-index: 10;
+}
+
+/* ===== Connecting Line ===== */
+
+.connector {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  height: 1px;
+
+  background: rgba(194, 211, 221, 0.45);
+  z-index: -1;
+}
+
+/* ===== Common Button Style ===== */
+
+.action-btn {
+  position: relative;
+  height: 38px;
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  border: 1px solid rgba(192, 211, 225, 0.48);
+  color: #fff;
+  background: linear-gradient(180deg, #263d4e, #142737);
+
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* Angular inner edges */
+
+.action-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-left: 2px solid rgba(255, 255, 255, 0.15);
+  border-right: 2px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+}
+
+/* Hover */
+
+.action-btn:hover {
+  border-color: #c5e7f5;
+  background: linear-gradient(180deg, #34556a, #1b3447);
+  box-shadow: 0 0 12px rgba(80, 178, 220, 0.2);
+}
+
+/* Press */
+
+.action-btn:active {
+  transform: scale(0.97);
+}
+
+/* Keyboard focus */
+
+.action-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+/* ===== Practice Icon ===== */
+
+.crosshair {
+  font-size: 18px;
+  line-height: 1;
+  color: #dcecf5;
+  transition: transform 0.25s ease;
+}
+
+#practice:hover .crosshair {
+  transform: rotate(45deg);
+}
+
+/* ===== Find Match Button ===== */
+
+
+.primary {
+  height: 54px;
+  padding: 0 24px;
+
+  border: 2px solid #101820;
+  outline: 1px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+
+  background: #ff4655;
+  color: #fff;
+
+  font-family: Impact, "Arial Narrow", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  box-shadow: none;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.primary:hover {
+  background: #ff5967;
+  box-shadow: 0 0 14px rgba(255, 70, 85, 0.25);
+}
+
+.primary:active {
+  transform: scale(0.98);
+}
+
+/* Light sweep */
+
+.button-glow {
+  position: absolute;
+  top: -100%;
+  left: -60%;
+
+  width: 35%;
+  height: 300%;
+
+  transform: rotate(25deg);
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+
+  transition: left 0.4s ease;
+}
+
+.primary:hover .button-glow {
+  left: 130%;
+}
+
+/* Searching state */
+
+.primary.searching {
+  background: #253c4c;
+  border-color: #58d9d2;
+  box-shadow: 0 0 14px rgba(88, 217, 210, 0.2);
+}
+
+.primary.searching .button-label {
+  animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+/* ===== Status Message ===== */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(5% + 60px);
+
+  transform: translateX(-50%) translateY(6px);
+  padding: 9px 16px;
+
+  background: rgba(7, 22, 35, 0.94);
+  color: #e6f5ff;
+  border: 1px solid rgba(113, 190, 220, 0.4);
+
+  font: 11px Arial, sans-serif;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 20;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== Animations ===== */
+
+@keyframes pulse-text {
+  50% {
+    opacity: 0.65;
+  }
+}
+
+/* ===== Responsive Layout ===== */
+
+@media (max-width: 520px) {
+  .lobby-actions {
+    gap: 9px;
+    bottom: 4%;
+  }
+
+  .action-btn {
+    height: 35px;
+    padding: 0 5px;
+    gap: 5px;
+    font-size: 8px;
+  }
+
+  .primary {
+    height: 39px;
+    font-size: 13px;
+  }
+}
+
+/* ===== Reduced Motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .action-btn,
+  .button-glow,
+  .toast,
+  .crosshair {
+    transition: none;
+  }
+
+  .primary.searching .button-label {
+    animation: none;
+  }
+}
